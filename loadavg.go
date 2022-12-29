@@ -2,7 +2,7 @@ package loadavg
 
 import (
 	"fmt"
-	"io/ioutil"
+	"os"
 	"runtime"
 	"errors"
 )
@@ -28,7 +28,7 @@ func Parse() (*Loadavg, error) {
 func parse_linux() (*Loadavg, error) {
 	self := new(Loadavg)
 
-	raw, err := ioutil.ReadFile("/proc/loadavg")
+	raw, err := os.ReadFile("/proc/loadavg")
 	if err != nil {
 		return self, err
 	}
